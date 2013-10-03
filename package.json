@@ -1,0 +1,41 @@
+{
+    "name":                         "grunt-available-tasks",
+    "description":                  "List available Grunt tasks & targets.",
+    "version":                      "0.1.0",
+    "homepage":                     "https://github.io/ben-eb/grunt-available-tasks",
+    "author": {
+        "name":                     "Ben Briggs",
+        "email":                    "therealbenbriggs@hotmail.com",
+        "url":                      "http://beneb.info"
+    },
+    "repository": {
+        "type":                     "git",
+        "url":                      "git://github.com/ben-eb/grunt-available-tasks.git"
+    },
+    "bugs": {
+        "url":                      "https://github.com/ben-eb/grunt-available-tasks/issues"
+    },
+    "licenses": [{
+        "type":                     "MIT",
+        "url":                      "https://github.com/ben-eb/grunt-available-tasks/blob/master/LICENSE-MIT"
+    }],
+    "main":                         "Gruntfile.js",
+    "engines": {
+        "node":                     ">= 0.8.0"
+    },
+    "devDependencies": {
+        "grunt-contrib-jshint" :    "~0.6.0",
+        "grunt-lintspaces" :        "~0.2.202",
+        "grunt" :                   "~0.4.1",
+        "load-grunt-tasks" :        "0.1.0"
+    },
+    "peerDependencies": {
+        "grunt":                    "~0.4.1"
+    },
+    "keywords": [
+        "help",
+        "gruntplugin",
+        "list",
+        "tasks"
+    ]
+}
