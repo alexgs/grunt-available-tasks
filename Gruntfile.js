@@ -49,9 +49,9 @@ module.exports = function(grunt) {
                 }
             }
         },
-        available_tasks: {
+        availabletasks: {
             options: {
-                include: ['available_tasks', 'default']
+                include: ['availabletasks', 'default']
             }
         }
     });

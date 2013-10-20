@@ -13,7 +13,7 @@ function formatOutput(opts) {
 }
 
 module.exports = function(grunt) {
-    grunt.registerTask('available_tasks', 'List available Grunt tasks & targets.', function() {
+    grunt.registerTask('availabletasks', 'List available Grunt tasks & targets.', function() {
         var _       = grunt.util._,
             _s      = _.str,
             tasks   = grunt.task._tasks;
@@ -32,9 +32,9 @@ module.exports = function(grunt) {
                 config = grunt.config(name),
                 targets = '',
                 log = function() {
-                    // Grey out available_tasks itself.
+                    // Grey out availabletasks itself.
                     grunt.log.writeln(formatOutput({
-                        colour :  ! _s.include(name, 'available_tasks'),
+                        colour :  ! _s.include(name, 'availabletasks'),
                         name :    _.rpad(name, longest.name.length),
                         type :    _.center(type, 4),
                         info :    task.info,
