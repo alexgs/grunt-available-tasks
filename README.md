@@ -4,7 +4,9 @@ Want all of your registered tasks in a nice, alphabetized, colour coded list? Th
 
 ## Usage
 
-Using this thing is straightforward. Simply add it to your `package.json` and then register it in your `Gruntfile` through `grunt.loadNpmTasks()`, or the matchdep trick (`require('matchdep').filterDev('grunt-').forEach(grunt.loadNpmTasks)`) or by using load-grunt-tasks (`require('load-grunt-tasks')(grunt)`). You'll then get to run `grunt available_tasks`. No initConfig section for this plugin is required!
+Using this thing is straightforward. Simply add it to your `package.json` and then register it in your `Gruntfile` through `grunt.loadNpmTasks()`, or the matchdep trick (`require('matchdep').filterDev('grunt-').forEach(grunt.loadNpmTasks)`) or by using load-grunt-tasks (`require('load-grunt-tasks')(grunt)`). You'll then get to run `grunt available_tasks`.
+
+Optionally, if you have a long list of tasks and only want to show a subset of those to others who might have cloned your project, you can specify a section in the initConfig.
 
 From left to right, this plugin outputs the task name, the type of the task, then the description and finally a list of multitask targets should you have configured two or more. The type of the task is registered with arrows:
 

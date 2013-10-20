@@ -48,6 +48,11 @@ module.exports = function(grunt) {
                     ignores         : ['js-comments']
                 }
             }
+        },
+        available_tasks: {
+            options: {
+                include: ['available_tasks', 'default']
+            }
         }
     });
     // Lint all the things
