@@ -51,7 +51,8 @@ module.exports = function(grunt) {
         },
         availabletasks: {
             options: {
-                include: ['availabletasks', 'default']
+                filter: 'exclude',
+                tasks: ['jshint', 'lintspaces']
             }
         }
     });

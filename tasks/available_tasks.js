@@ -19,7 +19,8 @@ module.exports = function(grunt) {
             tasks   = grunt.task._tasks;
 
         var options = this.options({
-            include: false
+            filter: false,
+            tasks: false
         });
 
         var longest = _.max(tasks, function(task) {
@@ -51,12 +52,16 @@ module.exports = function(grunt) {
                     targets = ' (' + conf.join('|') + ')';
                 }
             }
-            if (options.include === false) {
-                log();
-            } else {
-                if (options.include.indexOf(name) > -1) {
+            // Filtering rules. These are optional, so just log if filter & tasks aren't in the expected format.
+            if (typeof options.filter === 'string' && typeof options.tasks === 'object') {
+                var exists = _.indexOf(options.tasks, name);
+                if (options.filter === 'include' && exists > -1) {
                     log();
-                }  
+                } else if (options.filter === 'exclude' && exists === -1) {
+                    log();
+                }
+            } else {
+                log();
             }
         });
     });
