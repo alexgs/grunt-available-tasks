@@ -19,8 +19,9 @@ module.exports = function(grunt) {
             tasks   = grunt.task._tasks;
 
         var options = this.options({
-            filter: false,
-            tasks: false
+            filter  : false,
+            tasks   : false,
+            dimmed  : true
         });
 
         var longest = _.max(tasks, function(task) {
@@ -33,9 +34,9 @@ module.exports = function(grunt) {
                 config = grunt.config(name),
                 targets = '',
                 log = function() {
-                    // Grey out availabletasks itself.
+                    // By default, dim availabletasks itself.
                     grunt.log.writeln(formatOutput({
-                        colour :  ! _s.include(name, 'availabletasks'),
+                        colour :  (options.dimmed) ? ! _s.include(name, 'availabletasks') : true,
                         name :    _.rpad(name, longest.name.length),
                         type :    _.center(type, 4),
                         info :    task.info,

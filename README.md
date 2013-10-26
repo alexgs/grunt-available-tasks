@@ -28,6 +28,12 @@ Default value: `false`
 
 The list of tasks to either include or exclude.
 
+#### options.dimmed
+Type: `Boolean`
+Default value: `true`
+
+Whether to grey out availabletasks from the list or not.
+
 ### Sample configuration
 
 In this project, running `availabletasks` will exclude *jshint* and *lintspaces* and list `availabletasks` and `default`. Changing the filter to *include* would exclude `availabletasks` and `default`.
