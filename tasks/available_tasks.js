@@ -16,35 +16,33 @@ module.exports = function(grunt) {
     grunt.registerTask('availabletasks', 'List available Grunt tasks & targets.', function() {
         var _       = grunt.util._,
             _s      = _.str,
-            tasks   = grunt.task._tasks;
-
-        var options = this.options({
-            filter  : false,
-            tasks   : false,
-            dimmed  : true
-        });
-
-        var longest = _.max(tasks, function(task) {
-            return task.name.length;
-        });
+            tasks   = grunt.task._tasks,
+            options = this.options({
+                filter : false,
+                tasks  : false,
+                dimmed : true
+            }),
+            longest = _.max(tasks, function(task) {
+                return task.name.length;
+            });
 
         _.each(_.sortBy(tasks, ['name']), function(task) {
-            var name = task.name,
-                multi = (task.multi) ? '->' : '>',
-                config = grunt.config(name),
+            var name    = task.name,
+                multi   = (task.multi) ? '->' : '>',
+                config  = grunt.config(name),
                 targets = '',
                 log = function() {
                     // By default, dim availabletasks itself.
                     grunt.log.writeln(formatOutput({
-                        colour :  (options.dimmed) ? ! _s.include(name, 'availabletasks') : true,
-                        name :    _.rpad(name, longest.name.length),
-                        type :    _.center(type, 4),
-                        info :    task.info,
+                        colour  : (options.dimmed) ? !_s.include(name, 'availabletasks') : true,
+                        name    : _.rpad(name, longest.name.length),
+                        type    : _.center(type, 4),
+                        info    : task.info,
                         targets : targets
                     }));
-                };
-            // test if the task is a local config or something installed
-            var type = (_s.include(task.meta.info, 'local Npm module')) ? multi : '=>';
+                },
+                // test if the task is a local config or something installed
+                type = (_s.include(task.meta.info, 'local Npm module')) ? multi : '=>';
             if (typeof config === 'object' && task.multi) {
                 delete config.options;
                 var conf = Object.keys(config);

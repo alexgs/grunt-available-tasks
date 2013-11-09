@@ -1,7 +1,7 @@
 {
     "name":                         "grunt-available-tasks",
     "description":                  "List available Grunt tasks & targets.",
-    "version":                      "0.2.1",
+    "version":                      "0.2.2",
     "homepage":                     "https://github.com/ben-eb/grunt-available-tasks",
     "author": {
         "name":                     "Ben Briggs",
@@ -25,6 +25,7 @@
     },
     "devDependencies": {
         "grunt-contrib-jshint" :    "~0.6.0",
+        "grunt-jscs-checker" :      "~0.2.3",
         "grunt-lintspaces" :        "~0.2.202",
         "grunt" :                   "~0.4.1",
         "load-grunt-tasks" :        "0.1.0"

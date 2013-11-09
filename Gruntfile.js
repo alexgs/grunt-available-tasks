@@ -11,6 +11,9 @@
 module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
     grunt.initConfig({
+        jscs: {
+            source: [ 'tasks/available_tasks.js' ]
+        },
         jshint: {
             all: [
                 'Gruntfile.js',
@@ -57,7 +60,7 @@ module.exports = function(grunt) {
         }
     });
     // Lint all the things
-    grunt.registerTask('default', ['lintspaces', 'jshint']);
+    grunt.registerTask('default', ['lintspaces', 'jshint', 'jscs']);
     // Actually load this plugin's task(s).
     grunt.loadTasks('tasks');
 };
