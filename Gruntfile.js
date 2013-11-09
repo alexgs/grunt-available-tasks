@@ -54,13 +54,15 @@ module.exports = function(grunt) {
         },
         availabletasks: {
             options: {
-                filter: 'exclude',
-                tasks: ['jshint', 'lintspaces']
+                filter: 'include',
+                tasks: ['tasks', 'default']
             }
         }
     });
     // Lint all the things
-    grunt.registerTask('default', ['lintspaces', 'jshint', 'jscs']);
+    grunt.registerTask('default', 'Run code validation tasks', ['lintspaces', 'jshint', 'jscs']);
+    // Alias availabletasks with tasks for easier typing
+    grunt.registerTask('tasks', ['availabletasks']);
     // Actually load this plugin's task(s).
     grunt.loadTasks('tasks');
 };

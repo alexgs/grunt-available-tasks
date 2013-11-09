@@ -17,10 +17,13 @@ module.exports = function(grunt) {
         var _       = grunt.util._,
             _s      = _.str,
             tasks   = grunt.task._tasks,
+            output  = [],
+            heading = '',
             options = this.options({
                 filter : false,
                 tasks  : false,
-                dimmed : true
+                dimmed : true,
+                groups : {}
             }),
             longest = _.max(tasks, function(task) {
                 return task.name.length;
@@ -32,14 +35,28 @@ module.exports = function(grunt) {
                 config  = grunt.config(name),
                 targets = '',
                 log = function() {
+                    var hasGroup  = false,
                     // By default, dim availabletasks itself.
-                    grunt.log.writeln(formatOutput({
-                        colour  : (options.dimmed) ? !_s.include(name, 'availabletasks') : true,
-                        name    : _.rpad(name, longest.name.length),
-                        type    : _.center(type, 4),
-                        info    : task.info,
-                        targets : targets
-                    }));
+                        formatted = formatOutput({
+                            colour  : (options.dimmed) ? !_s.include(name, 'availabletasks') : true,
+                            name    : _.rpad(name, longest.name.length),
+                            type    : _.center(type, 4),
+                            info    : task.info,
+                            targets : targets
+                        });
+                    _.each(Object.keys(options.groups), function(group) {
+                        if (_.include(options.groups[group], name)) {
+                            hasGroup = true;
+                            output.push({ group : group, log : formatted });
+                        }
+                    });
+                    if (!hasGroup) {
+                        if (Object.keys(options.groups).length > 0) {
+                            output.push({ group : 'Ungrouped', log : formatted });
+                        } else {
+                            output.push({ log : formatted });
+                        }
+                    }
                 },
                 // test if the task is a local config or something installed
                 type = (_s.include(task.meta.info, 'local Npm module')) ? multi : '=>';
@@ -62,6 +79,15 @@ module.exports = function(grunt) {
             } else {
                 log();
             }
+        });
+
+        _.each(_.sortBy(output, 'group'), function(o) {
+            // Make sure that we defined some groups
+            if (heading !== o.group && typeof o.group !== 'undefined') {
+                grunt.log.subhead(o.group);
+                heading = o.group;
+            }
+            grunt.log.writeln(o.log);
         });
     });
 };
