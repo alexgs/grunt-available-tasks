@@ -1,5 +1,7 @@
 # grunt-available-tasks
 
+[![NPM version](https://badge.fury.io/js/grunt-available-tasks.png)](http://badge.fury.io/js/grunt-available-tasks) [![Dependency Status](https://gemnasium.com/ben-eb/grunt-available-tasks.png)](https://gemnasium.com/ben-eb/grunt-available-tasks) [![Code Climate](https://codeclimate.com/github/ben-eb/grunt-available-tasks.png)](https://codeclimate.com/github/ben-eb/grunt-available-tasks)
+
 Want all of your registered tasks in a nice, alphabetized, colour coded list? Think the task list outputted by `grunt --help` could be more descriptive? `grunt-available-tasks` to the rescue!
 
 ## Usage
@@ -42,7 +44,7 @@ You may choose to group similar tasks if you'd like. See below for an example co
 
 ### Basic configuration
 
-Running `availabletasks` in this project will exclude everything but `availabletasks` and `default`. Changing the filter to *include* would exclude `availabletasks` and `default`.
+Running `availabletasks` in this project will show only the `availabletasks` and `default` tasks.
 
     availabletasks: {
         options: {
