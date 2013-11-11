@@ -8,15 +8,16 @@
 
 'use strict';
 
+var _  = require('lodash');
+var _s = require('underscore.string');
+
 function formatOutput(opts) {
     return (opts.colour) ? opts.name.cyan + opts.type.white + opts.info + opts.targets.green : (opts.name + opts.type + opts.info + opts.targets).grey;
 }
 
 module.exports = function(grunt) {
     grunt.registerTask('availabletasks', 'List available Grunt tasks & targets.', function() {
-        var _       = grunt.util._,
-            _s      = _.str,
-            tasks   = grunt.task._tasks,
+        var tasks   = grunt.task._tasks,
             output  = [],
             heading = '',
             options = this.options({
@@ -39,8 +40,8 @@ module.exports = function(grunt) {
                     // By default, dim availabletasks itself.
                         formatted = formatOutput({
                             colour  : (options.dimmed) ? !_s.include(name, 'availabletasks') : true,
-                            name    : _.rpad(name, longest.name.length),
-                            type    : _.center(type, 4),
+                            name    : _s.rpad(name, longest.name.length),
+                            type    : _s.center(type, 4),
                             info    : task.info,
                             targets : targets
                         });
