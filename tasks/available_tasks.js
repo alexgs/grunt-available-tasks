@@ -8,8 +8,8 @@
 
 'use strict';
 
-var _  = require('lodash');
-var _s = require('underscore.string');
+var _  = require('lodash'),
+    _s = require('underscore.string');
 
 function formatOutput(opts) {
     return (opts.colour) ? opts.name.cyan + opts.type.white + opts.info + opts.targets.green : (opts.name + opts.type + opts.info + opts.targets).grey;
