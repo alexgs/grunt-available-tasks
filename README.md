@@ -42,7 +42,13 @@ Default value: `{}` (empty)
 
 You may choose to group similar tasks if you'd like. See below for an example configuration.
 
-### Basic configuration
+#### options.descriptions
+Type: `Object`
+Default value: `{}` (empty)
+
+Override any task name, including aliases, with any description that you like. See below for an example configuration.
+
+### Filter configuration
 
 Running `availabletasks` in this project will show only the `availabletasks` and `default` tasks.
 
@@ -66,6 +72,20 @@ In this project, we group similar tasks together under a heading, so that newcom
     }
 
 The filter option will take precedence over the grouping option, so if you have filtered out a task it will not show up in any groups. Additionally, the same task can appear in multiple groups.
+
+### Description configuration
+
+Descriptions for tasks in this project have been replaced with our own custom descriptions.
+
+    availabletasks: {
+        options: {
+            descriptions: {
+                'availabletasks' : 'A really nice task list helper for your Grunt enabled projects.'
+            }
+        }
+    }
+
+Again, filtering will take precedence over descriptions; defining a description for a task that is excluded by a filter is pointless!
 
 ## Output
 

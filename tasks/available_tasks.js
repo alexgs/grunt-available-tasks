@@ -15,21 +15,29 @@ function formatOutput(opts) {
     return (opts.colour) ? opts.name.cyan + opts.type.white + opts.info + opts.targets.green : (opts.name + opts.type + opts.info + opts.targets).grey;
 }
 
+function setTaskInfo(grunt, name, info) {
+    grunt.task._tasks[name].info = info;
+}
+
 module.exports = function(grunt) {
     grunt.registerTask('availabletasks', 'List available Grunt tasks & targets.', function() {
         var tasks   = grunt.task._tasks,
             output  = [],
             heading = '',
             options = this.options({
-                filter : false,
-                tasks  : false,
-                dimmed : true,
-                groups : {}
+                filter       : false,
+                tasks        : false,
+                dimmed       : true,
+                groups       : {},
+                descriptions : {}
             }),
             longest = _.max(tasks, function(task) {
                 return task.name.length;
             });
-
+        // Override descriptions with our own values
+        _.each(Object.keys(options.descriptions), function(description) {
+            setTaskInfo(grunt, description, options.descriptions[description]);
+        });
         _.each(_.sortBy(tasks, ['name']), function(task) {
             var name    = task.name,
                 multi   = (task.multi) ? '->' : '>',
