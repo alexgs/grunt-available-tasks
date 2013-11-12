@@ -53,8 +53,10 @@ module.exports = function(grunt) {
                             info    : task.info,
                             targets : targets
                         });
-                    _.each(Object.keys(options.groups), function(group) {
-                        if (options.groups[group] === name) {
+                    _.each(Object.keys(options.groups), function(group, index) {
+                        // Use contains to make sure that the task name is an exact match:
+                        // i.e. we don't want to match tasks and availabletasks as true
+                        if (_.contains(options.groups[group], name)) {
                             hasGroup = true;
                             output.push({ group : _s.capitalize(group), log : formatted });
                         }
