@@ -21,7 +21,7 @@ function setTaskInfo(grunt, name, info) {
 
 module.exports = function(grunt) {
     grunt.registerTask('availabletasks', 'List available Grunt tasks & targets.', function() {
-        var tasks   = grunt.task._tasks,
+        var tasks   = _.sortBy(grunt.task._tasks, 'name'),
             output  = [],
             heading = '',
             options = this.options({
@@ -38,7 +38,7 @@ module.exports = function(grunt) {
         _.each(Object.keys(options.descriptions), function(description) {
             setTaskInfo(grunt, description, options.descriptions[description]);
         });
-        _.each(_.sortBy(tasks, ['name']), function(task) {
+        _.each(tasks, function(task) {
             var name    = task.name,
                 multi   = (task.multi) ? '->' : '>',
                 config  = grunt.config(name),
@@ -54,9 +54,9 @@ module.exports = function(grunt) {
                             targets : targets
                         });
                     _.each(Object.keys(options.groups), function(group) {
-                        if (_.include(options.groups[group], name)) {
+                        if (options.groups[group] === name) {
                             hasGroup = true;
-                            output.push({ group : group, log : formatted });
+                            output.push({ group : _s.capitalize(group), log : formatted });
                         }
                     });
                     if (!hasGroup) {
@@ -89,8 +89,8 @@ module.exports = function(grunt) {
                 log();
             }
         });
-
-        _.each(_.sortBy(output, 'group'), function(o) {
+        output = _.sortBy(output, 'group');
+        _.each(output, function(o) {
             // Make sure that we defined some groups
             if (heading !== o.group && typeof o.group !== 'undefined') {
                 grunt.log.subhead(o.group);
