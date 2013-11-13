@@ -57,6 +57,12 @@ module.exports = function(grunt) {
                 filter: 'include',
                 tasks: ['tasks', 'default']
             }
+        },
+        mochaTest: {
+            unit: ['test/lib/**/*.js'],
+            options: {
+                reporter: 'spec'
+            }
         }
     });
     // Lint all the things
