@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect,
-    getOutput = require('../../lib/get-output');
+    getOutput = require('../../lib/get_output');
 
 describe('getOutput', function() {
 
@@ -12,7 +12,7 @@ describe('getOutput', function() {
 
         expect(output).to.have.length(1);
         expect(output[0]).to.eql({
-            log: formattedg
+            log: formatted
         });
     });
 
