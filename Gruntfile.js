@@ -17,7 +17,8 @@ module.exports = function(grunt) {
         jshint: {
             all: [
                 'Gruntfile.js',
-                'tasks/*.js'
+                'tasks/*.js',
+                'lib/*.js'
             ],
             options: {
                 'expr'              : true,
@@ -39,6 +40,7 @@ module.exports = function(grunt) {
             source: {
                 src: [
                     'tasks/**/*.js',
+                    'lib/**/*.js',
                     'Gruntfile.js',
                     'package.json',
                     'README.md'
