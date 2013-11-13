@@ -66,7 +66,7 @@ module.exports = function(grunt) {
         }
     });
     // Lint all the things
-    grunt.registerTask('default', 'Run code validation tasks', ['lintspaces', 'jshint', 'jscs']);
+    grunt.registerTask('default', 'Run code validation tasks', ['lintspaces', 'jshint', 'jscs', 'mochaTest']);
     // Alias availabletasks with tasks for easier typing
     grunt.registerTask('tasks', ['availabletasks']);
     // Actually load this plugin's task(s).

@@ -1,53 +1,53 @@
 {
-  "name": "grunt-available-tasks",
-  "description": "List available Grunt tasks & targets.",
-  "version": "0.3.5",
-  "homepage": "https://github.com/ben-eb/grunt-available-tasks",
-  "author": {
-    "name": "Ben Briggs",
-    "email": "therealbenbriggs@hotmail.com",
-    "url": "http://beneb.info"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/ben-eb/grunt-available-tasks.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ben-eb/grunt-available-tasks/issues"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/ben-eb/grunt-available-tasks/blob/master/LICENSE-MIT"
-    }
-  ],
-  "main": "Gruntfile.js",
-  "engines": {
-    "node": ">= 0.8.0"
-  },
-  "dependencies": {
-    "lodash": "~2.3.0",
-    "underscore.string": "~2.3.3"
-  },
-  "devDependencies": {
-    "grunt-contrib-jshint": "~0.7.1",
-    "grunt-jscs-checker": "~0.2.3",
-    "grunt-lintspaces": "~0.2.203",
-    "grunt": "~0.4.1",
-    "load-grunt-tasks": "0.2.0",
-    "grunt-mocha-test": "~0.7.0",
-    "chai": "~1.8.1"
-  },
-  "peerDependencies": {
-    "grunt": "~0.4.1"
-  },
-  "scripts": {
-    "test": "grunt"
-  },
-  "keywords": [
-    "help",
-    "gruntplugin",
-    "list",
-    "tasks"
-  ]
+    "name": "grunt-available-tasks",
+    "description": "List available Grunt tasks & targets.",
+    "version": "0.3.5",
+    "homepage": "https://github.com/ben-eb/grunt-available-tasks",
+    "author": {
+        "name": "Ben Briggs",
+        "email": "therealbenbriggs@hotmail.com",
+        "url": "http://beneb.info"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/ben-eb/grunt-available-tasks.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ben-eb/grunt-available-tasks/issues"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/ben-eb/grunt-available-tasks/blob/master/LICENSE-MIT"
+        }
+    ],
+    "main": "Gruntfile.js",
+    "engines": {
+        "node": ">= 0.8.0"
+    },
+    "dependencies": {
+        "lodash": "~2.3.0",
+        "underscore.string": "~2.3.3"
+    },
+    "devDependencies": {
+        "grunt-contrib-jshint": "~0.7.1",
+        "grunt-jscs-checker": "~0.2.3",
+        "grunt-lintspaces": "~0.2.203",
+        "grunt": "~0.4.1",
+        "load-grunt-tasks": "0.2.0",
+        "grunt-mocha-test": "~0.7.0",
+        "chai": "~1.8.1"
+    },
+    "peerDependencies": {
+        "grunt": "~0.4.1"
+    },
+    "scripts": {
+        "test": "grunt"
+    },
+    "keywords": [
+        "help",
+        "gruntplugin",
+        "list",
+        "tasks"
+    ]
 }
