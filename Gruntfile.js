@@ -12,13 +12,16 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
     grunt.initConfig({
         jscs: {
-            source: [ 'tasks/available_tasks.js' ]
+            source: [
+                'lib/**/*.js',
+                'tasks/**/*.js'
+            ]
         },
         jshint: {
             all: [
                 'Gruntfile.js',
-                'tasks/*.js',
-                'lib/*.js'
+                'tasks/**/*.js',
+                'lib/**/*.js'
             ],
             options: {
                 'expr'              : true,
