@@ -21,7 +21,7 @@ function setTaskInfo(grunt, name, info) {
 
 module.exports = function(grunt) {
     grunt.registerTask('availabletasks', 'List available Grunt tasks & targets.', function() {
-        var getOutput = require('../lib/get-output'),
+        var getOutput = require('../lib/get_output'),
             tasks   = _.sortBy(grunt.task._tasks, 'name'),
             output  = [],
             heading = '',
