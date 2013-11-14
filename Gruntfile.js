@@ -17,7 +17,8 @@ module.exports = function(grunt) {
         jshint: {
             all: [
                 'Gruntfile.js',
-                'tasks/*.js'
+                'tasks/*.js',
+                'lib/*.js'
             ],
             options: {
                 'expr'              : true,
@@ -39,6 +40,7 @@ module.exports = function(grunt) {
             source: {
                 src: [
                     'tasks/**/*.js',
+                    'lib/**/*.js',
                     'Gruntfile.js',
                     'package.json',
                     'README.md'
@@ -57,10 +59,16 @@ module.exports = function(grunt) {
                 filter: 'include',
                 tasks: ['tasks', 'default']
             }
+        },
+        mochaTest: {
+            unit: ['test/lib/**/*.js'],
+            options: {
+                reporter: 'spec'
+            }
         }
     });
     // Lint all the things
-    grunt.registerTask('default', 'Run code validation tasks', ['lintspaces', 'jshint', 'jscs']);
+    grunt.registerTask('default', 'Run code validation tasks', ['lintspaces', 'jshint', 'jscs', 'mochaTest', 'availabletasks']);
     // Alias availabletasks with tasks for easier typing
     grunt.registerTask('tasks', ['availabletasks']);
     // Actually load this plugin's task(s).

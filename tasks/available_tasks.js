@@ -21,7 +21,8 @@ function setTaskInfo(grunt, name, info) {
 
 module.exports = function(grunt) {
     grunt.registerTask('availabletasks', 'List available Grunt tasks & targets.', function() {
-        var tasks   = _.sortBy(grunt.task._tasks, 'name'),
+        var getOutput = require('../lib/get_output'),
+            tasks   = _.sortBy(grunt.task._tasks, 'name'),
             output  = [],
             heading = '',
             options = this.options({
@@ -44,30 +45,16 @@ module.exports = function(grunt) {
                 config  = grunt.config(name),
                 targets = '',
                 log = function() {
-                    var hasGroup  = false,
+
                     // By default, dim availabletasks itself.
-                        formatted = formatOutput({
+                    var formatted = formatOutput({
                             colour  : (options.dimmed) ? !_s.include(name, 'availabletasks') : true,
                             name    : _s.rpad(name, longest.name.length),
                             type    : _s.center(type, 4),
                             info    : task.info,
                             targets : targets
                         });
-                    _.each(Object.keys(options.groups), function(group, index) {
-                        // Use contains to make sure that the task name is an exact match:
-                        // i.e. we don't want to match tasks and availabletasks as true
-                        if (_.contains(options.groups[group], name)) {
-                            hasGroup = true;
-                            output.push({ group : _s.capitalize(group), log : formatted });
-                        }
-                    });
-                    if (!hasGroup) {
-                        if (Object.keys(options.groups).length > 0) {
-                            output.push({ group : 'Ungrouped', log : formatted });
-                        } else {
-                            output.push({ log : formatted });
-                        }
-                    }
+                    getOutput(output, options.groups, name, formatted);
                 },
                 // test if the task is a local config or something installed
                 type = (_s.include(task.meta.info, 'local Npm module')) ? multi : '=>';
