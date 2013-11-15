@@ -22,6 +22,7 @@ function setTaskInfo(grunt, name, info) {
 module.exports = function(grunt) {
     grunt.registerTask('availabletasks', 'List available Grunt tasks & targets.', function() {
         var getOutput = require('../lib/get_output'),
+            shouldLogTask = require('../lib/should_log_task'),
             tasks   = _.sortBy(grunt.task._tasks, 'name'),
             output  = [],
             heading = '',
@@ -66,15 +67,8 @@ module.exports = function(grunt) {
                     targets = ' (' + conf.join('|') + ')';
                 }
             }
-            // Filtering rules. These are optional, so just log if filter & tasks aren't in the expected format.
-            if (typeof options.filter === 'string' && typeof options.tasks === 'object') {
-                var exists = _.indexOf(options.tasks, name);
-                if (options.filter === 'include' && exists > -1) {
-                    log();
-                } else if (options.filter === 'exclude' && exists === -1) {
-                    log();
-                }
-            } else {
+
+            if (shouldLogTask(options.filter, options.tasks, name)) {
                 log();
             }
         });
