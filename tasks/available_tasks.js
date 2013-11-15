@@ -23,6 +23,7 @@ module.exports = function(grunt) {
     grunt.registerTask('availabletasks', 'List available Grunt tasks & targets.', function() {
         var getOutput = require('../lib/get_output'),
             shouldLogTask = require('../lib/should_log_task'),
+            ids = require('../lib/taskIdentifiers'),
             tasks   = _.sortBy(grunt.task._tasks, 'name'),
             output  = [],
             heading = '',
@@ -42,23 +43,11 @@ module.exports = function(grunt) {
         });
         _.each(tasks, function(task) {
             var name    = task.name,
-                multi   = (task.multi) ? '->' : '>',
                 config  = grunt.config(name),
                 targets = '',
-                log = function() {
-
-                    // By default, dim availabletasks itself.
-                    var formatted = formatOutput({
-                            colour  : (options.dimmed) ? !_s.include(name, 'availabletasks') : true,
-                            name    : _s.rpad(name, longest.name.length),
-                            type    : _s.center(type, 4),
-                            info    : task.info,
-                            targets : targets
-                        });
-                    getOutput(output, options.groups, name, formatted);
-                },
                 // test if the task is a local config or something installed
-                type = (_s.include(task.meta.info, 'local Npm module')) ? multi : '=>';
+                type = (_s.include(task.meta.info, 'local Npm module')) ? (task.multi) ? ids.singleTarget : ids.multiTarget : ids.userDefined;
+
             if (typeof config === 'object' && task.multi) {
                 delete config.options;
                 var conf = Object.keys(config);
@@ -69,7 +58,14 @@ module.exports = function(grunt) {
             }
 
             if (shouldLogTask(options.filter, options.tasks, name)) {
-                log();
+                // By default, dim availabletasks itself.
+                getOutput(output, options.groups, name, formatOutput({
+                    colour  : (options.dimmed) ? !_s.include(name, 'availabletasks') : true,
+                    name    : _s.rpad(name, longest.name.length),
+                    type    : _s.center(type, 4),
+                    info    : task.info,
+                    targets : targets
+                }));
             }
         });
         output = _.sortBy(output, 'group');
