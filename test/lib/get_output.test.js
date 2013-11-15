@@ -12,7 +12,7 @@ describe('getOutput', function () {
 
         expect(output).to.have.length(1);
         expect(output[0]).to.eql({
-            log: formatted
+            log : formatted
         });
     });
 
@@ -27,10 +27,10 @@ describe('getOutput', function () {
         expect(output).to.have.length(2);
         expect(output).to.eql([
             {
-                log: formatted1
+                log : formatted1
             },
             {
-                log: formatted2
+                log : formatted2
             }
         ]);
     });
@@ -42,7 +42,7 @@ describe('getOutput', function () {
             formattedInGroup = 'formatted task in group',
             formattedUngrouped = 'formatted task ungrouped',
             groups = {
-                groupA: [groupedTaskName]
+                groupA : [groupedTaskName]
             };
 
         getOutput(output, groups, groupedTaskName, formattedInGroup);
@@ -51,12 +51,12 @@ describe('getOutput', function () {
         expect(output).to.have.length(2);
         expect(output).to.eql([
             {
-                group: 'GroupA',
-                log: formattedInGroup
+                group : 'GroupA',
+                log   : formattedInGroup
             },
             {
-                group: 'Ungrouped',
-                log: formattedUngrouped
+                group : 'Ungrouped',
+                log   : formattedUngrouped
             }
         ]);
     });

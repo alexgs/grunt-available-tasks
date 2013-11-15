@@ -14,7 +14,8 @@ module.exports = function(grunt) {
         jscs: {
             source: [
                 'lib/**/*.js',
-                'tasks/**/*.js'
+                'tasks/**/*.js',
+                'test/**/*.js'
             ]
         },
         jshint: {
@@ -23,6 +24,12 @@ module.exports = function(grunt) {
                 'tasks/**/*.js',
                 'lib/**/*.js'
             ],
+            test: {
+                src: ['test/**/*.js'],
+                options: {
+                    'predef' : ['describe', 'it']
+                }
+            },
             options: {
                 'expr'              : true,
                 'node'              : true,
@@ -43,6 +50,7 @@ module.exports = function(grunt) {
             source: {
                 src: [
                     'tasks/**/*.js',
+                    'test/**/*.js',
                     'lib/**/*.js',
                     'Gruntfile.js',
                     'package.json',
