@@ -32,11 +32,11 @@ Default value: `false`
 
 The list of tasks to either include or exclude.
 
-#### options.dimmed
+#### options.dimmed (DEPRECATED)
 Type: `Boolean`
 Default value: `true`
 
-Whether to grey out availabletasks from the list or not.
+Whether to grey out availabletasks from the list or not. _This feature has been deprecated and will be removed from 0.4.x; if you don't want `availabletasks` to show, simply list it in your filter config_.
 
 #### options.groups
 Type: `Object`
