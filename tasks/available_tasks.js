@@ -24,13 +24,14 @@ module.exports = function(grunt) {
         var getOutput = require('../lib/get_output'),
             shouldLogTask = require('../lib/should_log_task'),
             ids = require('../lib/taskIdentifiers'),
-            tasks   = _.sortBy(grunt.task._tasks, 'name'),
+            tasks   = grunt.task._tasks,
             output  = [],
             heading = '',
             options = this.options({
                 filter       : false,
                 tasks        : false,
                 dimmed       : true,
+                sort         : true,
                 groups       : {},
                 descriptions : {}
             }),
@@ -41,6 +42,17 @@ module.exports = function(grunt) {
         _.each(Object.keys(options.descriptions), function(description) {
             setTaskInfo(grunt, description, options.descriptions[description]);
         });
+        // Sort the tasks by name if sorting is enabled
+        if (options.sort !== false) {
+            tasks = _.sortBy(tasks, 'name');
+        }
+        // Did we define a custom sort?
+        if (typeof options.sort === 'object') {
+            tasks = _.sortBy(tasks, function(task) {
+                var index = _.indexOf(options.sort, task.name);
+                return (index === -1) ? options.sort.length : index;
+            });
+        }
         _.each(tasks, function(task) {
             var name    = task.name,
                 config  = grunt.config(name),

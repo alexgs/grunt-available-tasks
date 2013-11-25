@@ -50,6 +50,12 @@ Default value: `{}` (empty)
 
 Override any task name, including aliases, with any description that you like. See below for an example configuration.
 
+#### options.sort
+Type: `Boolean|Object`
+Default value: `true`
+
+Setting this to `false` will maintain the original sort order for the tasks. `true` will sort alphabetically, and specifying an object will allow you to do your own custom sorting. See below for an example configuration.
+
 ### Filter configuration
 
 Running `availabletasks` in this project will show only the `availabletasks` and `default` tasks.
@@ -60,6 +66,8 @@ Running `availabletasks` in this project will show only the `availabletasks` and
             tasks: ['availabletasks', 'default']
         }
     }
+
+The filter configuration will override the group, description and sort configurations; so if you have filtered out a task it will not show up in any groups, it won't receive a custom description and it won't appear at the top of your task list.
 
 ### Group configuration
 
@@ -73,7 +81,7 @@ In this project, we group similar tasks together under a heading, so that newcom
         }
     }
 
-The filter option will take precedence over the grouping option, so if you have filtered out a task it will not show up in any groups. Additionally, the same task can appear in multiple groups.
+Additionally, the same task can appear in multiple groups.
 
 ### Description configuration
 
@@ -87,7 +95,15 @@ Descriptions for tasks in this project have been replaced with our own custom de
         }
     }
 
-Again, filtering will take precedence over descriptions; defining a description for a task that is excluded by a filter is pointless!
+### Sort configuration
+
+In this project, we want `lintspaces`, then `availabletasks` to show at the top of the list:
+
+    availabletasks: {
+        options: {
+            sort: ['lintspaces', 'availabletasks']
+        }
+    }
 
 ## Output
 

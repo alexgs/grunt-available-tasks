@@ -68,7 +68,8 @@ module.exports = function(grunt) {
         availabletasks: {
             options: {
                 filter: 'include',
-                tasks: ['tasks', 'default']
+                tasks: ['tasks', 'default'],
+                sort: ['tasks']
             }
         },
         mochaTest: {
