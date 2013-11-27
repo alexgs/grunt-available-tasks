@@ -27,7 +27,7 @@ module.exports = function(grunt) {
             test: {
                 src: ['test/**/*.js'],
                 options: {
-                    'predef' : ['describe', 'it']
+                    'predef' : ['describe', 'it', 'beforeEach']
                 }
             },
             options: {

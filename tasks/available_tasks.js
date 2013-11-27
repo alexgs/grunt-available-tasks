@@ -21,13 +21,12 @@ function setTaskInfo(grunt, name, info) {
 
 module.exports = function(grunt) {
     grunt.registerTask('availabletasks', 'List available Grunt tasks & targets.', function() {
-        var getOutput = require('../lib/get_output'),
-            shouldLogTask = require('../lib/should_log_task'),
-            ids = require('../lib/taskIdentifiers'),
-            tasks   = grunt.task._tasks,
-            output  = [],
-            heading = '',
-            options = this.options({
+        var getOutput   = require('../lib/get_output'),
+            filterTasks = require('../lib/filterTasks'),
+            ids         = require('../lib/taskIdentifiers'),
+            output      = [],
+            heading     = '',
+            options     = this.options({
                 filter       : false,
                 tasks        : false,
                 dimmed       : true,
@@ -35,6 +34,8 @@ module.exports = function(grunt) {
                 groups       : {},
                 descriptions : {}
             }),
+            // Delete tasks that don't pass a filter
+            tasks = filterTasks(options.filter, options.tasks, grunt.task._tasks),
             longest = _.max(tasks, function(task) {
                 return task.name.length;
             });
@@ -68,17 +69,14 @@ module.exports = function(grunt) {
                     targets = ' (' + conf.join('|') + ')';
                 }
             }
-
-            if (shouldLogTask(options.filter, options.tasks, name)) {
-                // By default, dim availabletasks itself.
-                getOutput(output, options.groups, name, formatOutput({
-                    colour  : (options.dimmed) ? !_s.include(name, 'availabletasks') : true,
-                    name    : _s.rpad(name, longest.name.length),
-                    type    : _s.center(type, 4),
-                    info    : task.info,
-                    targets : targets
-                }));
-            }
+            // By default, dim availabletasks itself.
+            getOutput(output, options.groups, name, formatOutput({
+                colour  : (options.dimmed) ? !_s.include(name, 'availabletasks') : true,
+                name    : _s.rpad(name, longest.name.length),
+                type    : _s.center(type, 4),
+                info    : task.info,
+                targets : targets
+            }));
         });
         output = _.sortBy(output, 'group');
         _.each(output, function(o) {
