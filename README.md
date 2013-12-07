@@ -113,6 +113,4 @@ From left to right, this plugin outputs the task name, the type of the task, the
 * ` -> ` denotes a multi target task.
 * ` => ` denotes a user defined task.
 
-
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ben-eb/grunt-available-tasks/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
