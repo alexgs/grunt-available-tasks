@@ -56,6 +56,41 @@ Default value: `true`
 
 Setting this to `false` will maintain the original sort order for the tasks. `true` will sort alphabetically, and specifying an object will allow you to do your own custom sorting. See below for an example configuration.
 
+#### options.reporter
+Type: `String|Function`
+Default value: `default`
+
+You can pass a `function` to this option if you'd like to specify a custom reporter. A simple reporter could look like this:
+
+```
+availabletasks: {
+    options: {
+        reporter: function(options) {
+            grunt.log.writeln(options.currentTask.name);
+        }
+    }
+}
+```
+
+In this function you are expected to handle group headings and how you'd like the multi task targets to be displayed. The options object that is passed will look something like this:
+
+```
+{
+    currentTask: {
+        name: 'availabletasks',
+        type: '->',
+        info: 'List available Grunt tasks & targets.',
+        group: 'Ungrouped'
+    },
+    meta: {
+        taskCount: 2,
+        groupCount: 0,
+        header: 'Ungrouped', // Only passed when the group has changed
+        longest: 14 // The length of the longest task, useful for column padding.
+    }
+}
+```
+
 ### Filter configuration
 
 Running `availabletasks` in this project will show only the `availabletasks` and `default` tasks.
