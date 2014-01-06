@@ -2,7 +2,7 @@
  * grunt-available-tasks
  * https://github.com/ben-eb/grunt-available-tasks
  *
- * Copyright (c) 2013 Ben Briggs
+ * Copyright (c) 2013-2014 Ben Briggs
  * Licensed under the MIT license.
  */
 
@@ -11,34 +11,30 @@
 var _  = require('lodash'),
     _s = require('underscore.string');
 
-function formatOutput(opts) {
-    return (opts.colour) ? opts.name.cyan + opts.type.white + opts.info + opts.targets.green : (opts.name + opts.type + opts.info + opts.targets).grey;
-}
-
 function setTaskInfo(grunt, name, info) {
     grunt.task._tasks[name].info = info;
 }
 
 module.exports = function(grunt) {
-    grunt.registerTask('availabletasks', 'List available Grunt tasks & targets.', function() {
+    grunt.registerMultiTask('availabletasks', 'List available Grunt tasks & targets.', function() {
         var getOutput   = require('../lib/get_output'),
             filterTasks = require('../lib/filterTasks'),
             ids         = require('../lib/taskIdentifiers'),
+            reporter    = require('../lib/reporters'),
             output      = [],
-            heading     = '',
+            header      = '',
+            showGroup   = true,
             options     = this.options({
                 filter       : false,
                 tasks        : false,
-                dimmed       : true,
                 sort         : true,
                 groups       : {},
-                descriptions : {}
+                descriptions : {},
+                reporter     : 'default'
             }),
             // Delete tasks that don't pass a filter
-            tasks = filterTasks(options.filter, options.tasks, grunt.task._tasks),
-            longest = _.max(tasks, function(task) {
-                return task.name.length;
-            });
+            tasks = filterTasks(options.filter, options.tasks, grunt.task._tasks);
+
         // Override descriptions with our own values
         _.each(Object.keys(options.descriptions), function(description) {
             setTaskInfo(grunt, description, options.descriptions[description]);
@@ -57,35 +53,47 @@ module.exports = function(grunt) {
         _.each(tasks, function(task) {
             var name    = task.name,
                 config  = grunt.config(name),
-                targets = '',
+                targets = [],
                 // test if the task is a local config or something installed
                 type = (_s.include(task.meta.info, 'local Npm module')) ? (task.multi) ? ids.singleTarget : ids.multiTarget : ids.userDefined;
-
+            // Delete global options from the task targets
             if (typeof config === 'object' && task.multi) {
                 delete config.options;
-                var conf = Object.keys(config);
-                // No point showing just one multi task target
-                if (conf.length > 1) {
-                    targets = ' (' + conf.join('|') + ')';
-                }
+                targets = Object.keys(config);
             }
-            // By default, dim availabletasks itself.
-            getOutput(output, options.groups, name, formatOutput({
-                colour  : (options.dimmed) ? !_s.include(name, 'availabletasks') : true,
-                name    : _s.rpad(name, longest.name.length),
-                type    : _s.center(type, 4),
+            // Get the output of the task
+            getOutput(output, options.groups, {
+                name    : task.name,
+                type    : type,
                 info    : task.info,
                 targets : targets
-            }));
+            });
         });
-        output = _.sortBy(output, 'group');
-        _.each(output, function(o) {
-            // Make sure that we defined some groups
-            if (heading !== o.group && typeof o.group !== 'undefined') {
-                grunt.log.subhead(o.group);
-                heading = o.group;
+        _.each(_.sortBy(output, 'group'), function(o) {
+            if (o.group === header) {
+                showGroup = false;
+            } else {
+                header = o.group;
+                showGroup = o.group;
             }
-            grunt.log.writeln(o.log);
+
+            var reportoptions = {
+                currentTask : o,
+                meta        : {
+                    taskCount  : Object.keys(tasks).length,
+                    groupCount : Object.keys(options.groups).length,
+                    header     : showGroup,
+                    longest    : _.max(tasks, function(task) {
+                        return task.name.length;
+                    }).name.length
+                }
+            };
+
+            if (typeof options.reporter === 'function') {
+                options.reporter(reportoptions);
+            } else {
+                reporter(grunt, options.reporter, reportoptions);
+            }
         });
     });
 };

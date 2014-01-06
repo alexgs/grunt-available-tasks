@@ -6,104 +6,153 @@
 
 Want all of your registered tasks in a nice, alphabetized, colour coded list? Think the task list outputted by `grunt --help` could be more descriptive? `grunt-available-tasks` to the rescue!
 
-## Usage
+## Install
 
-Once the plugin has been installed via `npm install grunt-available-tasks --save-dev`, it may be enabled inside your Gruntfile with this line of JavaScript:
+Install via [npm](https://npmjs.org/package/grunt-available-tasks):
+
+```
+npm install grunt-available-tasks --save-dev
+```
+
+Enable it inside your `Gruntfile.js` with this:
 
 ```js
 grunt.loadNpmTasks('grunt-available-tasks');
 ```
 
-Alternatively, use a plugin such as [https://github.com/sindresorhus/load-grunt-tasks](load-grunt-tasks); specify `require('load-grunt-tasks')(grunt);` in your Gruntfile and you don't need a separate line for every plugin you use. Once installed, simply run `grunt availabletasks`.
+Alternatively, use a plugin such as [https://github.com/sindresorhus/load-grunt-tasks](load-grunt-tasks):
 
-Optionally, if you have a long list of tasks and only want to show a subset of those to others who might have cloned your project, you can specify a section in the initConfig to include, or to exclude the tasks you specify. The options are as follows:
+```js
+require('load-grunt-tasks')(grunt);
+```
+
+## The "availabletasks" task
+
+Once installed, you will need to specify a section in your Gruntfile, like so:
+
+```js
+grunt.initConfig({
+    availabletasks: {
+        tasks: {}
+    }
+})
+```
+
+If you want some further customisation, the options are as follows:
 
 ### Options
-
-#### options.filter
-Type: `String`
-Default value: `false`
-
-Define either 'include', or 'exclude'.
 
 #### options.tasks
 Type: `Object`
 Default value: `false`
 
-The list of tasks to either include or exclude.
+The list of tasks to either include or exclude with the filter option.
 
-#### options.dimmed (DEPRECATED)
-Type: `Boolean`
-Default value: `true`
+#### options.filter
+Type: `String`
+Default value: `false`
 
-Whether to grey out availabletasks from the list or not. _This feature has been deprecated and will be removed from 0.4.x; if you don't want `availabletasks` to show, simply list it in your filter config_.
+Define either 'include', or 'exclude'. The filter configuration will override the group, description and sort configurations; so if you have filtered out a task it will not show up in any groups, it won't receive a custom description and it won't appear at the top of your task list. An example configuration:
 
-#### options.groups
-Type: `Object`
-Default value: `{}` (empty)
-
-You may choose to group similar tasks if you'd like. See below for an example configuration.
-
-#### options.descriptions
-Type: `Object`
-Default value: `{}` (empty)
-
-Override any task name, including aliases, with any description that you like. See below for an example configuration.
-
-#### options.sort
-Type: `Boolean|Object`
-Default value: `true`
-
-Setting this to `false` will maintain the original sort order for the tasks. `true` will sort alphabetically, and specifying an object will allow you to do your own custom sorting. See below for an example configuration.
-
-### Filter configuration
-
-Running `availabletasks` in this project will show only the `availabletasks` and `default` tasks.
-
-    availabletasks: {
+```
+availabletasks: {
+    tasks: {
         options: {
             filter: 'include',
             tasks: ['availabletasks', 'default']
         }
     }
+}
+```
 
-The filter configuration will override the group, description and sort configurations; so if you have filtered out a task it will not show up in any groups, it won't receive a custom description and it won't appear at the top of your task list.
+#### options.groups
+Type: `Object`
+Default value: `{}` (empty)
 
-### Group configuration
+You may choose to group similar tasks if you'd like; note that the same task can appear in multiple groups if you wish. An example configuration:
 
-In this project, we group similar tasks together under a heading, so that newcomers to the code will know what the tasks are for.
-
-    availabletasks: {
+```
+availabletasks: {
+    tasks: {
         options: {
             groups: {
                 'Run code validation tasks': ['lintspaces', 'jshint', 'jscs']
             }
         }
     }
+}
+```
 
-Additionally, the same task can appear in multiple groups.
+#### options.descriptions
+Type: `Object`
+Default value: `{}` (empty)
 
-### Description configuration
+Override any task name, including aliases, with any description that you like. An example configuration:
 
-Descriptions for tasks in this project have been replaced with our own custom descriptions.
-
-    availabletasks: {
+```
+availabletasks: {
+    tasks: {
         options: {
             descriptions: {
                 'availabletasks' : 'A really nice task list helper for your Grunt enabled projects.'
             }
         }
     }
+}
+```
 
-### Sort configuration
+#### options.sort
+Type: `Boolean|Object`
+Default value: `true`
 
-In this project, we want `lintspaces`, then `availabletasks` to show at the top of the list:
+Setting this to `false` will maintain the original sort order for the tasks. `true` will sort alphabetically, and specifying an object will allow you to do your own custom sorting. An example configuration:
 
-    availabletasks: {
+```
+availabletasks: {
+    tasks: {
         options: {
             sort: ['lintspaces', 'availabletasks']
         }
     }
+}
+```
+
+#### options.reporter
+Type: `String|Function`
+Default value: `default`
+
+Choose either the default reporter (`default`) or the Markdown reporter (`markdown`). Alternately, you can pass a `function` to this option if you'd like to specify a custom reporter. A simple reporter could look like this:
+
+```
+availabletasks: {
+    tasks: {
+        options: {
+            reporter: function(options) {
+                grunt.log.writeln(options.currentTask.name);
+            }
+        }
+    }
+}
+```
+
+In this function you are expected to handle group headings and how you'd like the multi task targets to be displayed. The options object that is passed will look something like this:
+
+```
+{
+    currentTask: {
+        name: 'availabletasks',
+        type: '=>',
+        info: 'List available Grunt tasks & targets.',
+        group: 'Ungrouped'
+    },
+    meta: {
+        taskCount: 2,
+        groupCount: 0,
+        header: 'Ungrouped', // Only passed when the group has changed
+        longest: 14 // The length of the longest task, useful for column padding.
+    }
+}
+```
 
 ## Output
 
