@@ -16,7 +16,7 @@ function setTaskInfo(grunt, name, info) {
 }
 
 module.exports = function(grunt) {
-    grunt.registerTask('availabletasks', 'List available Grunt tasks & targets.', function() {
+    grunt.registerMultiTask('availabletasks', 'List available Grunt tasks & targets.', function() {
         var getOutput   = require('../lib/get_output'),
             filterTasks = require('../lib/filterTasks'),
             ids         = require('../lib/taskIdentifiers'),

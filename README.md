@@ -6,17 +6,33 @@
 
 Want all of your registered tasks in a nice, alphabetized, colour coded list? Think the task list outputted by `grunt --help` could be more descriptive? `grunt-available-tasks` to the rescue!
 
-## Usage
+## Install
 
-Once the plugin has been installed via `npm install grunt-available-tasks --save-dev`, it may be enabled inside your Gruntfile with this line of JavaScript:
+Install via [npm](https://npmjs.org/package/grunt-available-tasks):
+
+`npm install grunt-available-tasks --save-dev`
+
+Enable it inside your `Gruntfile.js` with this:
 
 ```js
 grunt.loadNpmTasks('grunt-available-tasks');
 ```
 
-Alternatively, use a plugin such as [https://github.com/sindresorhus/load-grunt-tasks](load-grunt-tasks); specify `require('load-grunt-tasks')(grunt);` in your Gruntfile and you don't need a separate line for every plugin you use. Once installed, simply run `grunt availabletasks`.
+Alternatively, use a plugin such as [https://github.com/sindresorhus/load-grunt-tasks](load-grunt-tasks); specify `require('load-grunt-tasks')(grunt);` in your Gruntfile and you don't need a separate line for every plugin you use.
 
-Optionally, if you have a long list of tasks and only want to show a subset of those to others who might have cloned your project, you can specify a section in the initConfig to include, or to exclude the tasks you specify. The options are as follows:
+## The "availabletasks" task
+
+Once installed, you will need to specify a section in your Gruntfile, like so:
+
+```js
+grunt.initConfig({
+    availabletasks: {
+        tasks: {}
+    }
+})
+```
+
+If you want some further customisation, the options are as follows:
 
 ### Options
 
@@ -34,9 +50,11 @@ Define either 'include', or 'exclude'. The filter configuration will override th
 
 ```
 availabletasks: {
-    options: {
-        filter: 'include',
-        tasks: ['availabletasks', 'default']
+    tasks: {
+        options: {
+            filter: 'include',
+            tasks: ['availabletasks', 'default']
+        }
     }
 }
 ```
@@ -49,9 +67,11 @@ You may choose to group similar tasks if you'd like; note that the same task can
 
 ```
 availabletasks: {
-    options: {
-        groups: {
-            'Run code validation tasks': ['lintspaces', 'jshint', 'jscs']
+    tasks: {
+        options: {
+            groups: {
+                'Run code validation tasks': ['lintspaces', 'jshint', 'jscs']
+            }
         }
     }
 }
@@ -65,9 +85,11 @@ Override any task name, including aliases, with any description that you like. A
 
 ```
 availabletasks: {
-    options: {
-        descriptions: {
-            'availabletasks' : 'A really nice task list helper for your Grunt enabled projects.'
+    tasks: {
+        options: {
+            descriptions: {
+                'availabletasks' : 'A really nice task list helper for your Grunt enabled projects.'
+            }
         }
     }
 }
@@ -81,8 +103,10 @@ Setting this to `false` will maintain the original sort order for the tasks. `tr
 
 ```
 availabletasks: {
-    options: {
-        sort: ['lintspaces', 'availabletasks']
+    tasks: {
+        options: {
+            sort: ['lintspaces', 'availabletasks']
+        }
     }
 }
 ```
@@ -95,9 +119,11 @@ You can pass a `function` to this option if you'd like to specify a custom repor
 
 ```
 availabletasks: {
-    options: {
-        reporter: function(options) {
-            grunt.log.writeln(options.currentTask.name);
+    tasks: {
+        options: {
+            reporter: function(options) {
+                grunt.log.writeln(options.currentTask.name);
+            }
         }
     }
 }
@@ -109,7 +135,7 @@ In this function you are expected to handle group headings and how you'd like th
 {
     currentTask: {
         name: 'availabletasks',
-        type: '->',
+        type: '=>',
         info: 'List available Grunt tasks & targets.',
         group: 'Ungrouped'
     },
