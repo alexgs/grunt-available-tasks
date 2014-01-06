@@ -53,7 +53,6 @@ module.exports = function(grunt) {
                     'test/**/*.js',
                     'lib/**/*.js',
                     'Gruntfile.js',
-                    'package.json',
                     'README.md'
                 ],
                 options: {
