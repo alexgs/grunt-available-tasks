@@ -121,7 +121,7 @@ availabletasks: {
 Type: `String|Function`
 Default value: `default`
 
-You can pass a `function` to this option if you'd like to specify a custom reporter. A simple reporter could look like this:
+Choose either the default reporter (`default`) or the Markdown reporter (`markdown`). Alternately, you can pass a `function` to this option if you'd like to specify a custom reporter. A simple reporter could look like this:
 
 ```
 availabletasks: {

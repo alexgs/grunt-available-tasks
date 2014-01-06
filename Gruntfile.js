@@ -72,6 +72,11 @@ module.exports = function(grunt) {
                 sort: ['tasks']
             },
             defaultreporter: {},
+            markdownreporter: {
+                options: {
+                    reporter: 'markdown'
+                }
+            },
             customreporter: {
                 options: {
                     reporter: function(options) {
