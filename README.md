@@ -10,7 +10,9 @@ Want all of your registered tasks in a nice, alphabetized, colour coded list? Th
 
 Install via [npm](https://npmjs.org/package/grunt-available-tasks):
 
-`npm install grunt-available-tasks --save-dev`
+```
+npm install grunt-available-tasks --save-dev
+```
 
 Enable it inside your `Gruntfile.js` with this:
 
@@ -18,7 +20,11 @@ Enable it inside your `Gruntfile.js` with this:
 grunt.loadNpmTasks('grunt-available-tasks');
 ```
 
-Alternatively, use a plugin such as [https://github.com/sindresorhus/load-grunt-tasks](load-grunt-tasks); specify `require('load-grunt-tasks')(grunt);` in your Gruntfile and you don't need a separate line for every plugin you use.
+Alternatively, use a plugin such as [https://github.com/sindresorhus/load-grunt-tasks](load-grunt-tasks):
+
+```js
+require('load-grunt-tasks')(grunt);
+```
 
 ## The "availabletasks" task
 
