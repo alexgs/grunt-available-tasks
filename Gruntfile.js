@@ -31,19 +31,7 @@ module.exports = function(grunt) {
                 }
             },
             options: {
-                'expr'              : true,
-                'node'              : true,
-                'strict'            : true,
-                'trailing'          : true,
-                'undef'             : true,
-                'curly'             : true,
-                'eqeqeq'            : true,
-                'immed'             : true,
-                'latedef'           : true,
-                'noarg'             : true,
-                'noempty'           : true,
-                'unused'            : true,
-                'indent'            : 4
+                jshintrc: true
             },
         },
         lintspaces: {
