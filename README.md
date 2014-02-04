@@ -54,7 +54,7 @@ Default value: `false`
 
 Define either 'include', or 'exclude'. The filter configuration will override the group, description and sort configurations; so if you have filtered out a task it will not show up in any groups, it won't receive a custom description and it won't appear at the top of your task list. An example configuration:
 
-```
+```js
 availabletasks: {
     tasks: {
         options: {
@@ -71,7 +71,7 @@ Default value: `{}` (empty)
 
 You may choose to group similar tasks if you'd like; note that the same task can appear in multiple groups if you wish. An example configuration:
 
-```
+```js
 availabletasks: {
     tasks: {
         options: {
@@ -89,7 +89,7 @@ Default value: `{}` (empty)
 
 Override any task name, including aliases, with any description that you like. An example configuration:
 
-```
+```js
 availabletasks: {
     tasks: {
         options: {
@@ -107,7 +107,7 @@ Default value: `true`
 
 Setting this to `false` will maintain the original sort order for the tasks. `true` will sort alphabetically, and specifying an object will allow you to do your own custom sorting. An example configuration:
 
-```
+```js
 availabletasks: {
     tasks: {
         options: {
@@ -123,7 +123,7 @@ Default value: `default`
 
 Choose either the default reporter (`default`) or the Markdown reporter (`markdown`). Alternately, you can pass a `function` to this option if you'd like to specify a custom reporter. A simple reporter could look like this:
 
-```
+```js
 availabletasks: {
     tasks: {
         options: {
@@ -137,7 +137,7 @@ availabletasks: {
 
 In this function you are expected to handle group headings and how you'd like the multi task targets to be displayed. The options object that is passed will look something like this:
 
-```
+```js
 {
     currentTask: {
         name: 'availabletasks',
