@@ -23,7 +23,6 @@ module.exports = function(grunt) {
             reporter    = require('../lib/reporters'),
             output      = [],
             header      = '',
-            showGroup   = true,
             options     = this.options({
                 filter       : false,
                 tasks        : false,
@@ -69,31 +68,32 @@ module.exports = function(grunt) {
                 targets : targets
             });
         });
-        _.each(_.sortBy(output, 'group'), function(o) {
-            if (o.group === header) {
-                showGroup = false;
-            } else {
-                header = o.group;
-                showGroup = o.group;
-            }
-
-            var reportoptions = {
-                currentTask : o,
-                meta        : {
-                    taskCount  : Object.keys(tasks).length,
-                    groupCount : Object.keys(options.groups).length,
-                    header     : showGroup,
-                    longest    : _.max(tasks, function(task) {
-                        return task.name.length;
-                    }).name.length
-                }
-            };
-
-            if (typeof options.reporter === 'function') {
-                options.reporter(reportoptions);
-            } else {
-                reporter(grunt, options.reporter, reportoptions);
-            }
-        });
+        _.chain(output)
+            .sortBy(function(value) {
+                return (value.group === 'Ungrouped') ? 1 : 0;
+            })
+            .groupBy('group')
+            .each(function(group) {
+                header = group.group;
+                _.each(group, function(o) {
+                    var reportoptions = {
+                        currentTask : o,
+                        meta        : {
+                            taskCount  : Object.keys(tasks).length,
+                            groupCount : Object.keys(options.groups).length,
+                            header     : header !== '',
+                            longest    : _.max(tasks, function(task) {
+                                return task.name.length;
+                            }).name.length
+                        }
+                    };
+                    header = '';
+                    if (typeof options.reporter === 'function') {
+                        options.reporter(reportoptions);
+                    } else {
+                        reporter(grunt, options.reporter, reportoptions);
+                    }
+                });
+            });
     });
 };
