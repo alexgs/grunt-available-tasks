@@ -12,6 +12,9 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
     grunt.initConfig({
         jscs: {
+            options: {
+                config: '.jscs.json'
+            },
             source: [
                 'lib/**/*.js',
                 'tasks/**/*.js',
