@@ -65,6 +65,22 @@ availabletasks: {
 }
 ```
 
+#### options.showTasks
+Type: `Array`
+Default value: `['single', 'multi', 'user']`
+
+Use this option if you would like to show only a subset of the task types. For example if you just want to show the tasks that you have written:
+
+```js
+availabletasks: {
+    tasks: {
+        options: {
+            showTasks: ['user']
+        }
+    }
+}
+```
+
 #### options.groups
 Type: `Object`
 Default value: `{}` (empty)

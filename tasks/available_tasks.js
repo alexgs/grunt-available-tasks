@@ -29,6 +29,7 @@ module.exports = function(grunt) {
                 sort         : true,
                 groups       : {},
                 descriptions : {},
+                showTasks    : ['single', 'multi', 'user'],
                 reporter     : 'default'
             }),
             // Delete tasks that don't pass a filter
@@ -53,20 +54,30 @@ module.exports = function(grunt) {
             var name    = task.name,
                 config  = grunt.config(name),
                 targets = [],
-                // test if the task is a local config or something installed
-                type = (_s.include(task.meta.info, 'local Npm module')) ? (task.multi) ? ids.singleTarget : ids.multiTarget : ids.userDefined;
+                type    = ids.user;
+            // test if the task is a local config or something installed
+            if (_s.include(task.meta.info, 'local Npm module')) {
+                type = (task.multi) ? ids.multi : ids.single;
+            }
             // Delete global options from the task targets
             if (typeof config === 'object' && task.multi) {
                 delete config.options;
                 targets = Object.keys(config);
             }
             // Get the output of the task
-            getOutput(output, options.groups, {
-                name    : task.name,
-                type    : type,
-                info    : task.info,
-                targets : targets
+            var allowedTypes = _.map(Object.keys(ids), function(id) {
+                if (_.contains(options.showTasks, id)) {
+                    return ids[id];
+                }
             });
+            if (_.contains(allowedTypes, type)) {
+                getOutput(output, options.groups, {
+                    name    : task.name,
+                    type    : type,
+                    info    : task.info,
+                    targets : targets
+                });
+            }
         });
         _.chain(output)
             .sortBy(function(value) {
