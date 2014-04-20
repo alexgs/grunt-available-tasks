@@ -137,7 +137,13 @@ availabletasks: {
 Type: `String|Function`
 Default value: `default`
 
-Choose either the default reporter (`default`) or the Markdown reporter (`markdown`). Alternately, you can pass a `function` to this option if you'd like to specify a custom reporter. A simple reporter could look like this:
+There are three available reporters:
+
+* **Default** (`default`) : Reports all tasks defined in the project and any plugins
+* **Project** (`project`) : Report only user defined tasks in the default format
+* **Markdown** (`markdown`) : Report all tasks defined in the project and any plugins in markdown format
+
+Alternately, you can pass a `function` to this option if you'd like to specify a custom reporter. A simple reporter could look like this:
 
 ```js
 availabletasks: {
