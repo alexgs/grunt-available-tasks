@@ -2,7 +2,7 @@
 
 ![screenshot](screenshot.png)
 
-[![Build Status](https://travis-ci.org/ben-eb/grunt-available-tasks.svg?branch=master)](https://travis-ci.org/ben-eb/grunt-available-tasks) [![NPM version](https://badge.fury.io/js/grunt-available-tasks.png)](http://badge.fury.io/js/grunt-available-tasks) [![Dependency Status](https://gemnasium.com/ben-eb/grunt-available-tasks.png)](https://gemnasium.com/ben-eb/grunt-available-tasks) [![Code Climate](https://codeclimate.com/github/ben-eb/grunt-available-tasks.png)](https://codeclimate.com/github/ben-eb/grunt-available-tasks)
+[![Build Status](https://travis-ci.org/ben-eb/grunt-available-tasks.svg?branch=master)](https://travis-ci.org/ben-eb/grunt-available-tasks) [![NPM version](https://badge.fury.io/js/grunt-available-tasks.svg)](http://badge.fury.io/js/grunt-available-tasks) [![Dependency Status](https://gemnasium.com/ben-eb/grunt-available-tasks.svg)](https://gemnasium.com/ben-eb/grunt-available-tasks) [![Code Climate](https://codeclimate.com/github/ben-eb/grunt-available-tasks.png)](https://codeclimate.com/github/ben-eb/grunt-available-tasks)
 
 Want all of your registered tasks in a nice, alphabetized, colour coded list? Think the task list outputted by `grunt --help` could be more descriptive? `grunt-available-tasks` to the rescue!
 
@@ -14,28 +14,20 @@ Install via [npm](https://npmjs.org/package/grunt-available-tasks):
 npm install grunt-available-tasks --save-dev
 ```
 
-Enable it inside your `Gruntfile.js` with this:
+## Example
 
 ```js
-grunt.loadNpmTasks('grunt-available-tasks');
-```
+module.exports = function(grunt) {
+    grunt.initConfig({
+        availabletasks: {           // task
+            tasks: {}               // target
+        }
+    });
 
-Alternatively, use a plugin such as [https://github.com/sindresorhus/load-grunt-tasks](load-grunt-tasks):
-
-```js
-require('load-grunt-tasks')(grunt);
-```
-
-## The "availabletasks" task
-
-Once installed, you will need to specify a section in your Gruntfile, like so:
-
-```js
-grunt.initConfig({
-    availabletasks: {
-        tasks: {}
-    }
-})
+    grunt.loadNpmTasks('grunt-available-tasks');
+    // Now run the command below on the command line to get your tasks list:
+    // grunt availabletasks
+};
 ```
 
 If you want some further customisation, the options are as follows:
