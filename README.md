@@ -32,15 +32,15 @@ module.exports = function(grunt) {
 
 If you want some further customisation, the options are as follows:
 
-### Options
+## Options
 
-#### options.tasks
+### options.tasks
 Type: `Object`
 Default value: `false`
 
 The list of tasks to either include or exclude with the filter option.
 
-#### options.filter
+### options.filter
 Type: `String`
 Default value: `false`
 
@@ -57,7 +57,7 @@ availabletasks: {
 }
 ```
 
-#### options.showTasks
+### options.showTasks
 Type: `Array`
 Default value: `['single', 'multi', 'user']`
 
@@ -73,7 +73,7 @@ availabletasks: {
 }
 ```
 
-#### options.groups
+### options.groups
 Type: `Object`
 Default value: `{}` (empty)
 
@@ -91,7 +91,7 @@ availabletasks: {
 }
 ```
 
-#### options.descriptions
+### options.descriptions
 Type: `Object`
 Default value: `{}` (empty)
 
@@ -109,7 +109,7 @@ availabletasks: {
 }
 ```
 
-#### options.sort
+### options.sort
 Type: `Boolean|Object`
 Default value: `true`
 
@@ -125,7 +125,7 @@ availabletasks: {
 }
 ```
 
-#### options.reporter
+### options.reporter
 Type: `String|Function`
 Default value: `default`
 
@@ -169,5 +169,13 @@ From left to right, this plugin outputs the task name, the type of the task, the
 * `  > ` denotes a single target task.
 * ` -> ` denotes a multi target task.
 * ` => ` denotes a user defined task.
+
+## Contributing
+
+Pull requests are welcome. If you add functionality, then please add unit tests to cover it.
+
+## License
+
+MIT © Ben Briggs
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ben-eb/grunt-available-tasks/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
