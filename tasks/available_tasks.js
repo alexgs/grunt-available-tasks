@@ -52,7 +52,7 @@ module.exports = function(grunt) {
         }
         _.each(tasks, function(task) {
             var name    = task.name,
-                config  = grunt.config(name),
+                config  = grunt.config.getRaw(name),
                 targets = [],
                 type    = ids.user;
             // test if the task is a local config or something installed
