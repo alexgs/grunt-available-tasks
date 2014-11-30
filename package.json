@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "lodash": "~2.4.0",
-    "underscore.string": "~2.3.3"
+    "underscore.string": "^2.4.0"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "0.10.0",
