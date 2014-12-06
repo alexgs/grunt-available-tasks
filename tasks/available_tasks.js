@@ -40,10 +40,10 @@ module.exports = function(grunt) {
             tasks = _.sortBy(tasks, 'name');
         }
         // Did we define a custom sort?
-        if (typeof options.sort === 'object') {
+        if (options.sort instanceof Array) {
             tasks = _.sortBy(tasks, function(task) {
-                var index = _.indexOf(options.sort, task.name);
-                return (index === -1) ? options.sort.length : index;
+                var index = options.sort.indexOf(task.name);
+                return (!~index) ? options.sort.length : index;
             });
         }
         _.each(tasks, function(task) {

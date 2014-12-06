@@ -110,10 +110,10 @@ availabletasks: {
 ```
 
 ### options.sort
-Type: `Boolean|Object`
+Type: `Boolean|Array`
 Default value: `true`
 
-Setting this to `false` will maintain the original sort order for the tasks. `true` will sort alphabetically, and specifying an object will allow you to do your own custom sorting. An example configuration:
+Setting this to `false` will maintain the original sort order for the tasks. `true` will sort alphabetically, and specifying an array will allow you to do your own custom sorting. An example configuration:
 
 ```js
 availabletasks: {
