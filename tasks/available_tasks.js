@@ -14,10 +14,6 @@ var filterTasks = require('../lib/filterTasks'),
     ids         = require('../lib/taskIdentifiers'),
     _           = require('lodash');
 
-function setTaskInfo(grunt, name, info) {
-    grunt.task._tasks[name].info = info;
-}
-
 module.exports = function(grunt) {
     grunt.registerMultiTask('availabletasks', 'List available Grunt tasks & targets.', function() {
         var output      = [],
@@ -35,8 +31,9 @@ module.exports = function(grunt) {
             tasks = filterTasks(options.filter, options.tasks, grunt.task._tasks);
 
         // Override descriptions with our own values
-        _.each(Object.keys(options.descriptions), function(description) {
-            setTaskInfo(grunt, description, options.descriptions[description]);
+        Object.keys(options.descriptions).forEach(function(description) {
+            var task = _.findWhere(tasks, { name : description });
+            task.info = options.descriptions[description];
         });
         // Sort the tasks by name if sorting is enabled
         if (options.sort) {
