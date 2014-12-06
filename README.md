@@ -162,6 +162,8 @@ In this function you are expected to handle group headings and how you'd like th
 }
 ```
 
+See the [reporters.js](lib/reporters.js) file for the default reporters, which you can take and customise to your liking.
+
 ## Output
 
 From left to right, this plugin outputs the task name, the type of the task, then the description and finally a list of multitask targets should you have configured two or more. The type of the task is registered with arrows:

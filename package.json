@@ -26,6 +26,7 @@
     "node": ">= 0.10.0"
   },
   "dependencies": {
+    "chalk": "^0.5.1",
     "lodash": "~2.4.0",
     "underscore.string": "^2.4.0"
   },

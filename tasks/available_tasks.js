@@ -98,11 +98,8 @@ module.exports = function(grunt) {
                         }
                     };
                     header = '';
-                    if (typeof options.reporter === 'function') {
-                        options.reporter(reportoptions);
-                    } else {
-                        reporter(grunt, options.reporter, reportoptions);
-                    }
+                    var reportFn = (typeof options.reporter === 'function') ? options.reporter : reporter[options.reporter];
+                    reportFn.call(this, reportoptions);
                 });
             });
     });
