@@ -27,17 +27,17 @@
   },
   "dependencies": {
     "chalk": "^0.5.1",
-    "lodash": "~2.4.1",
-    "underscore.string": "^2.4.0"
+    "lodash": "~3.2.0",
+    "underscore.string": "^3.0.3"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "0.10.0",
-    "grunt-jscs": "^1.0.0",
+    "grunt-contrib-jshint": "0.11.0",
+    "grunt-jscs": "^1.5.0",
     "grunt-lintspaces": "0.6.0",
     "grunt": "~0.4.5",
-    "load-grunt-tasks": "1.0.0",
-    "grunt-mocha-test": "0.12.4",
-    "chai": "1.10.0"
+    "load-grunt-tasks": "3.1.0",
+    "grunt-mocha-test": "0.12.7",
+    "chai": "2.0.0"
   },
   "peerDependencies": {
     "grunt": "~0.4.5"
