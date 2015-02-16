@@ -98,6 +98,7 @@ module.exports = function(grunt) {
                     var reportFn = (typeof options.reporter === 'function') ? options.reporter : reporter[options.reporter];
                     reportFn.call(this, reportoptions);
                 });
-            });
+            })
+            .value();
     });
 };
