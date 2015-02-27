@@ -2,7 +2,7 @@
  * grunt-available-tasks
  * https://github.com/ben-eb/grunt-available-tasks
  *
- * Copyright (c) 2013-2014 Ben Briggs
+ * Copyright (c) 2013-2015 Ben Briggs
  * Licensed under the MIT license.
  */
 
@@ -15,7 +15,7 @@ var filterTasks = require('../lib/filterTasks'),
     _           = require('lodash');
 
 module.exports = function(grunt) {
-    grunt.registerMultiTask('availabletasks', 'List available Grunt tasks & targets.', function() {
+    grunt.registerMultiTask('availabletasks', 'List available Grunt tasks & targets.', function () {
         var output      = [],
             header      = '',
             options     = this.options({
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
             tasks = filterTasks(options.filter, options.tasks, grunt.task._tasks);
 
         // Override descriptions with our own values
-        Object.keys(options.descriptions).forEach(function(description) {
+        Object.keys(options.descriptions).forEach(function (description) {
             var task = _.findWhere(tasks, { name : description });
             task.info = options.descriptions[description];
         });
@@ -41,12 +41,12 @@ module.exports = function(grunt) {
         }
         // Did we define a custom sort?
         if (options.sort instanceof Array) {
-            tasks = _.sortBy(tasks, function(task) {
+            tasks = _.sortBy(tasks, function (task) {
                 var index = options.sort.indexOf(task.name);
                 return (!~index) ? options.sort.length : index;
             });
         }
-        _.each(tasks, function(task) {
+        _.each(tasks, function (task) {
             var name    = task.name,
                 config  = grunt.config.getRaw(name),
                 targets = [],
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
                 targets = Object.keys(config);
             }
             // Get the output of the task
-            var allowedTypes = _.map(Object.keys(ids), function(id) {
+            var allowedTypes = _.map(Object.keys(ids), function (id) {
                 if (_.contains(options.showTasks, id)) {
                     return ids[id];
                 }
@@ -76,20 +76,20 @@ module.exports = function(grunt) {
             }
         });
         _.chain(output)
-            .sortBy(function(value) {
+            .sortBy(function (value) {
                 return (value.group === 'Ungrouped') ? 1 : 0;
             })
             .groupBy('group')
-            .each(function(group) {
+            .each(function (group) {
                 header = group.group;
-                _.each(group, function(o) {
+                _.each(group, function (o) {
                     var reportoptions = {
                         currentTask : o,
                         meta        : {
                             taskCount  : Object.keys(tasks).length,
                             groupCount : Object.keys(options.groups).length,
                             header     : header !== '',
-                            longest    : _.max(tasks, function(task) {
+                            longest    : _.max(tasks, function (task) {
                                 return task.name.length;
                             }).name.length
                         }
