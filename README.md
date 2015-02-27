@@ -2,9 +2,11 @@
 
 ![screenshot](screenshot.png)
 
-[![Build Status](https://travis-ci.org/ben-eb/grunt-available-tasks.svg?branch=master)](https://travis-ci.org/ben-eb/grunt-available-tasks) [![NPM version](https://badge.fury.io/js/grunt-available-tasks.svg)](http://badge.fury.io/js/grunt-available-tasks) [![Dependency Status](https://gemnasium.com/ben-eb/grunt-available-tasks.svg)](https://gemnasium.com/ben-eb/grunt-available-tasks) [![Code Climate](https://codeclimate.com/github/ben-eb/grunt-available-tasks.png)](https://codeclimate.com/github/ben-eb/grunt-available-tasks)
+[![Build Status](https://travis-ci.org/ben-eb/grunt-available-tasks.svg?branch=master)][ci] [![NPM version](https://badge.fury.io/js/grunt-available-tasks.svg)][npm] [![Dependency Status](https://gemnasium.com/ben-eb/grunt-available-tasks.svg)][deps] [![Code Climate](https://codeclimate.com/github/ben-eb/grunt-available-tasks/badges/gpa.svg)][cc]
 
-Want all of your registered tasks in a nice, alphabetized, colour coded list? Think the task list outputted by `grunt --help` could be more descriptive? `grunt-available-tasks` to the rescue!
+Want all of your registered tasks in a nice, alphabetized, colour coded list?
+Think the task list outputted by `grunt --help` could be more descriptive?
+`grunt-available-tasks` to the rescue!
 
 ## Install
 
@@ -44,7 +46,10 @@ The list of tasks to either include or exclude with the filter option.
 Type: `String`
 Default value: `false`
 
-Define either 'include', or 'exclude'. The filter configuration will override the group, description and sort configurations; so if you have filtered out a task it will not show up in any groups, it won't receive a custom description and it won't appear at the top of your task list. An example configuration:
+Define either 'include', or 'exclude'. The filter configuration will override
+the group, description and sort configurations; so if you have filtered out a
+task it will not show up in any groups, it won't receive a custom description
+and it won't appear at the top of your task list. An example configuration:
 
 ```js
 availabletasks: {
@@ -61,7 +66,8 @@ availabletasks: {
 Type: `Array`
 Default value: `['single', 'multi', 'user']`
 
-Use this option if you would like to show only a subset of the task types. For example if you just want to show the tasks that you have written:
+Use this option if you would like to show only a subset of the task types. For
+example if you just want to show the tasks that you have written:
 
 ```js
 availabletasks: {
@@ -77,7 +83,8 @@ availabletasks: {
 Type: `Object`
 Default value: `{}` (empty)
 
-You may choose to group similar tasks if you'd like; note that the same task can appear in multiple groups if you wish. An example configuration:
+You may choose to group similar tasks if you'd like; note that the same task can
+appear in multiple groups if you wish. An example configuration:
 
 ```js
 availabletasks: {
@@ -95,14 +102,15 @@ availabletasks: {
 Type: `Object`
 Default value: `{}` (empty)
 
-Override any task name, including aliases, with any description that you like. An example configuration:
+Override any task name, including aliases, with any description that you like.
+An example configuration:
 
 ```js
 availabletasks: {
     tasks: {
         options: {
             descriptions: {
-                'availabletasks' : 'A really nice task list helper for your Grunt enabled projects.'
+                'availabletasks': 'A powerful task list helper for Grunt enabled projects.'
             }
         }
     }
@@ -113,7 +121,9 @@ availabletasks: {
 Type: `Boolean|Array`
 Default value: `true`
 
-Setting this to `false` will maintain the original sort order for the tasks. `true` will sort alphabetically, and specifying an array will allow you to do your own custom sorting. An example configuration:
+Setting this to `false` will maintain the original sort order for the tasks.
+`true` will sort alphabetically, and specifying an array will allow you to do
+your own custom sorting. An example configuration:
 
 ```js
 availabletasks: {
@@ -129,7 +139,9 @@ availabletasks: {
 Type: `String|Function`
 Default value: `default`
 
-Choose either the default reporter (`default`) or the Markdown reporter (`markdown`). Alternately, you can pass a `function` to this option if you'd like to specify a custom reporter. A simple reporter could look like this:
+Choose either the default reporter (`default`) or the Markdown reporter
+(`markdown`). Alternately, you can pass a `function` to this option if you'd
+like to specify a custom reporter. A simple reporter could look like this:
 
 ```js
 availabletasks: {
@@ -143,7 +155,9 @@ availabletasks: {
 }
 ```
 
-In this function you are expected to handle group headings and how you'd like the multi task targets to be displayed. The options object that is passed will look something like this:
+In this function you are expected to handle group headings and how you'd like
+the multi task targets to be displayed. The options object that is passed will
+look something like this:
 
 ```js
 {
@@ -162,11 +176,14 @@ In this function you are expected to handle group headings and how you'd like th
 }
 ```
 
-See the [reporters.js](lib/reporters.js) file for the default reporters, which you can take and customise to your liking.
+See the [reporters.js](lib/reporters.js) file for the default reporters, which
+you can take and customise to your liking.
 
 ## Output
 
-From left to right, this plugin outputs the task name, the type of the task, then the description and finally a list of multitask targets should you have configured two or more. The type of the task is registered with arrows:
+From left to right, this plugin outputs the task name, the type of the task,
+then the description and finally a list of multitask targets should you have
+configured two or more. The type of the task is registered with arrows:
 
 * `  > ` denotes a single target task.
 * ` -> ` denotes a multi target task.
@@ -174,10 +191,16 @@ From left to right, this plugin outputs the task name, the type of the task, the
 
 ## Contributing
 
-Pull requests are welcome. If you add functionality, then please add unit tests to cover it.
+Pull requests are welcome. If you add functionality, then please add unit tests
+to cover it.
 
 ## License
 
 MIT © Ben Briggs
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ben-eb/grunt-available-tasks/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
+[cc]:      https://codeclimate.com/github/ben-eb/grunt-available-tasks
+[ci]:      https://travis-ci.org/ben-eb/grunt-available-tasks
+[deps]:    https://gemnasium.com/ben-eb/grunt-available-tasks
+[npm]:     http://badge.fury.io/js/grunt-available-tasks
