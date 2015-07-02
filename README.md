@@ -196,9 +196,7 @@ to cover it.
 
 ## License
 
-MIT © Ben Briggs
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ben-eb/grunt-available-tasks/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+MIT © [Ben Briggs](http://beneb.info)
 
 [cc]:      https://codeclimate.com/github/ben-eb/grunt-available-tasks
 [ci]:      https://travis-ci.org/ben-eb/grunt-available-tasks
