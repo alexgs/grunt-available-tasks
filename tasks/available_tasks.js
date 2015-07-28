@@ -72,7 +72,7 @@ module.exports = function(grunt) {
                     type    : type,
                     info    : task.info,
                     targets : targets
-                });
+                }, options.hideUngrouped);
             }
         });
         _.chain(output)
