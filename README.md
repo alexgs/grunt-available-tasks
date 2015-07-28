@@ -135,6 +135,24 @@ availabletasks: {
 }
 ```
 
+### options.hideUngrouped
+Type: `Boolean`
+Default value: `false`
+
+Setting this to `true` will not output any tasks that haven't
+been assigned to a group. `false` will display ungrouped tasks.
+An example configuration:
+
+```js
+availabletasks: {
+    tasks: {
+        options: {
+            hideUngrouped: true
+        }
+    }
+}
+```
+
 ### options.reporter
 Type: `String|Function`
 Default value: `default`

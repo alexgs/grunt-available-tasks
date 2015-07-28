@@ -16,16 +16,17 @@ var filterTasks = require('../lib/filterTasks'),
 
 module.exports = function(grunt) {
     grunt.registerMultiTask('availabletasks', 'List available Grunt tasks & targets.', function () {
-        var output      = [],
-            header      = '',
-            options     = this.options({
-                filter       : false,
-                tasks        : false,
-                sort         : true,
-                groups       : {},
-                descriptions : {},
-                showTasks    : ['single', 'multi', 'user'],
-                reporter     : 'default'
+        var output  = [],
+            header  = '',
+            options = this.options({
+                filter        : false,
+                tasks         : false,
+                sort          : true,
+                hideUngrouped : false,
+                groups        : {},
+                descriptions  : {},
+                showTasks     : ['single', 'multi', 'user'],
+                reporter      : 'default'
             }),
             // Delete tasks that don't pass a filter
             tasks = filterTasks(options.filter, options.tasks, grunt.task._tasks);
@@ -72,7 +73,7 @@ module.exports = function(grunt) {
                     type    : type,
                     info    : task.info,
                     targets : targets
-                });
+                }, options.hideUngrouped);
             }
         });
         _.chain(output)
