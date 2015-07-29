@@ -22,6 +22,7 @@ module.exports = function(grunt) {
                 filter       : false,
                 tasks        : false,
                 sort         : true,
+                hideUngrouped: false,
                 groups       : {},
                 descriptions : {},
                 showTasks    : ['single', 'multi', 'user'],
