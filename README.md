@@ -139,8 +139,8 @@ availabletasks: {
 Type: `Boolean`
 Default value: `false`
 
-Setting this to `true` will not output any tasks that have been
-assigned to a group. `false` will display ungrouped tasks.
+Setting this to `true` will not output any tasks that haven't
+been assigned to a group. `false` will display ungrouped tasks.
 An example configuration:
 
 ```js
