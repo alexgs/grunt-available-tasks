@@ -16,9 +16,9 @@ var filterTasks = require('../lib/filterTasks'),
 
 module.exports = function(grunt) {
     grunt.registerMultiTask('availabletasks', 'List available Grunt tasks & targets.', function () {
-        var output      = [],
-            header      = '',
-            options     = this.options({
+        var output  = [],
+            header  = '',
+            options = this.options({
                 filter          : false,
                 tasks           : false,
                 sort            : true,
