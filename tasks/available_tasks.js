@@ -19,14 +19,14 @@ module.exports = function(grunt) {
         var output      = [],
             header      = '',
             options     = this.options({
-                filter       : false,
-                tasks        : false,
-                sort         : true,
-                hideUngrouped: false,
-                groups       : {},
-                descriptions : {},
-                showTasks    : ['single', 'multi', 'user'],
-                reporter     : 'default'
+                filter          : false,
+                tasks           : false,
+                sort            : true,
+                hideUngrouped   : false,
+                groups          : {},
+                descriptions    : {},
+                showTasks       : ['single', 'multi', 'user'],
+                reporter        : 'default'
             }),
             // Delete tasks that don't pass a filter
             tasks = filterTasks(options.filter, options.tasks, grunt.task._tasks);
