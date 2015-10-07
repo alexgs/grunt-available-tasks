@@ -5,39 +5,37 @@
   "homepage": "https://github.com/ben-eb/grunt-available-tasks",
   "author": {
     "name": "Ben Briggs",
-    "email": "therealbenbriggs@hotmail.com",
+    "email": "beneb.info@gmail.com",
     "url": "http://beneb.info"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/ben-eb/grunt-available-tasks.git"
-  },
+  "repository": "ben-eb/grunt-available-tasks",
   "bugs": {
     "url": "https://github.com/ben-eb/grunt-available-tasks/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/ben-eb/grunt-available-tasks/blob/master/LICENSE-MIT"
-    }
+  "files": [
+    "lib",
+    "tasks",
+    "LICENSE-MIT",
+    "Gruntfile.js"
   ],
+  "license": "MIT",
   "main": "Gruntfile.js",
   "engines": {
     "node": ">= 0.10.0"
   },
   "dependencies": {
-    "chalk": "^1.1.0",
-    "lodash": "~3.10.0",
-    "underscore.string": "^3.1.1"
+    "chalk": "^1.1.1",
+    "lodash": "~3.10.1",
+    "underscore.string": "^3.2.2"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "0.11.2",
-    "grunt-jscs": "^1.8.0",
+    "grunt-contrib-jshint": "0.11.3",
+    "grunt-jscs": "^2.1.0",
     "grunt-lintspaces": "0.7.0",
     "grunt": "~0.4.5",
-    "load-grunt-tasks": "3.2.0",
+    "load-grunt-tasks": "3.3.0",
     "grunt-mocha-test": "0.12.7",
-    "chai": "3.0.0"
+    "chai": "3.3.0"
   },
   "peerDependencies": {
     "grunt": "~0.4.5"
