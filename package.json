@@ -29,13 +29,14 @@
     "underscore.string": "^3.2.2"
   },
   "devDependencies": {
+    "chai": "3.3.0",
+    "grunt": ">=0.4.0",
     "grunt-contrib-jshint": "0.11.3",
     "grunt-jscs": "^2.1.0",
     "grunt-lintspaces": "0.7.0",
-    "grunt": "~0.4.5",
-    "load-grunt-tasks": "3.3.0",
     "grunt-mocha-test": "0.12.7",
-    "chai": "3.3.0"
+    "load-grunt-tasks": "3.3.0",
+    "mocha": "^2.4.5"
   },
   "peerDependencies": {
     "grunt": ">=0.4.0"
