@@ -1,7 +1,7 @@
 {
   "name": "grunt-available-tasks",
   "description": "List available Grunt tasks & targets.",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "homepage": "https://github.com/ben-eb/grunt-available-tasks",
   "author": {
     "name": "Ben Briggs",
