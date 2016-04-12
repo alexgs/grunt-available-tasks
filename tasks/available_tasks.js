@@ -33,7 +33,7 @@ module.exports = function (grunt) {
 
         // Override descriptions with our own values
         Object.keys(options.descriptions).forEach(function (description) {
-            var task = _.findWhere(tasks, { name : description });
+            var task = _.find(tasks, { name : description });
             if (task) {
                 task.info = options.descriptions[description];
             }
@@ -65,11 +65,11 @@ module.exports = function (grunt) {
             }
             // Get the output of the task
             var allowedTypes = _.map(Object.keys(ids), function (id) {
-                if (_.contains(options.showTasks, id)) {
+                if (_.includes(options.showTasks, id)) {
                     return ids[id];
                 }
             });
-            if (_.contains(allowedTypes, type)) {
+            if (_.includes(allowedTypes, type)) {
                 getOutput(output, options.groups, {
                     name    : task.name,
                     type    : type,
@@ -92,7 +92,7 @@ module.exports = function (grunt) {
                             taskCount  : Object.keys(tasks).length,
                             groupCount : Object.keys(options.groups).length,
                             header     : header !== '',
-                            longest    : _.max(tasks, function (task) {
+                            longest    : _.maxBy(tasks, function (task) {
                                 return task.name.length;
                             }).name.length
                         }
