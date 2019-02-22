@@ -78,11 +78,13 @@ module.exports = function (grunt) {
                 }, options.hideUngrouped);
             }
         });
+        output = _.sortBy(output, 'group');
         _.chain(output)
             .sortBy(function (value) {
                 return (value.group === 'Ungrouped') ? 1 : 0;
             })
             .groupBy('group')
+            .sortBy('group')
             .each(function (group) {
                 header = group.group;
                 _.each(group, function (o) {
