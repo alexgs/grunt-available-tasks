@@ -98,6 +98,18 @@ availabletasks: {
 }
 ```
 
+You can also pass "bytype" to group the task by type.
+
+```js
+availabletasks: {
+    tasks: {
+        options: {
+            groups: "bytype"
+        }
+    }
+}
+```
+
 ### options.descriptions
 Type: `Object`
 Default value: `{}` (empty)

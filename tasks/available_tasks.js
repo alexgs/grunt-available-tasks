@@ -11,7 +11,7 @@
 var filterTasks = require('../lib/filterTasks'),
     getOutput   = require('../lib/get_output'),
     reporter    = require('../lib/reporters'),
-    ids         = require('../lib/taskIdentifiers'),
+    ids         = require('../lib/taskIdentifiers').taskIdentifiers,
     _           = require('lodash');
 
 module.exports = function (grunt) {
@@ -78,11 +78,13 @@ module.exports = function (grunt) {
                 }, options.hideUngrouped);
             }
         });
+        output = _.sortBy(output, 'group');
         _.chain(output)
             .sortBy(function (value) {
                 return (value.group === 'Ungrouped') ? 1 : 0;
             })
             .groupBy('group')
+            .sortBy('group')
             .each(function (group) {
                 header = group.group;
                 _.each(group, function (o) {

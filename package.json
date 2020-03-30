@@ -1,14 +1,13 @@
 {
-  "name": "grunt-available-tasks",
+  "name": "@robinherbots/grunt-available-tasks",
   "description": "List available Grunt tasks & targets.",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "homepage": "https://github.com/ben-eb/grunt-available-tasks",
-  "author": {
-    "name": "Ben Briggs",
-    "email": "beneb.info@gmail.com",
-    "url": "http://beneb.info"
+  "author": "Ben Briggs <beneb.info@gmail.com> (http://beneb.info)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ben-eb/grunt-available-tasks.git"
   },
-  "repository": "ben-eb/grunt-available-tasks",
   "bugs": {
     "url": "https://github.com/ben-eb/grunt-available-tasks/issues"
   },
@@ -48,5 +47,9 @@
     "gruntplugin",
     "list",
     "tasks"
-  ]
+  ],
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  }
 }
